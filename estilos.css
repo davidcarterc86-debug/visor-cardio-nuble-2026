@@ -1,0 +1,86 @@
+:root {
+  --fondo: #f6f7f9;
+  --superficie: #ffffff;
+  --texto: #1f2933;
+  --suave: #5b6672;
+  --borde: #d9dee4;
+  --acento: #b3261e;
+  --barra: #c0504d;
+  --barra-provisional: #e3a6a4;
+  --aviso: #fff4d6;
+  --aviso-borde: #e0b84f;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.45;
+}
+
+header, main { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+header h1 { margin: 24px 0 4px; font-size: 1.6rem; }
+header p { margin: 0 0 12px; color: var(--suave); }
+
+.boton { font: inherit; font-size: 0.95rem; padding: 8px 14px; border: 1px solid var(--acento); border-radius: 6px; background: var(--superficie); color: var(--acento); cursor: pointer; }
+.boton:hover, .boton:focus-visible { background: var(--acento); color: #fff; }
+#btn-volver { margin-top: 16px; }
+
+section { background: var(--superficie); border: 1px solid var(--borde); border-radius: 8px; padding: 16px; margin: 16px 0; }
+h2 { margin: 0 0 8px; font-size: 1.15rem; }
+h3 { margin: 16px 0 4px; font-size: 1rem; }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 12px; }
+.filtros label { display: flex; flex-direction: column; font-size: 0.85rem; color: var(--suave); flex: 1 1 220px; min-width: 0; }
+.filtros select { margin-top: 4px; padding: 6px; font-size: 0.95rem; width: 100%; }
+.modo { flex: 1 1 100%; display: flex; flex-direction: column; font-size: 0.85rem; color: var(--suave); }
+.modo-botones { display: flex; margin-top: 4px; }
+.modo-botones button { flex: 1 1 0; min-width: 0; font: inherit; font-size: 0.95rem; padding: 8px 12px; border: 1px solid var(--acento); background: var(--superficie); color: var(--acento); cursor: pointer; }
+.modo-botones button:first-child { border-radius: 6px 0 0 6px; }
+.modo-botones button:last-child { border-radius: 0 6px 6px 0; border-left: 0; }
+.modo-botones button[aria-pressed="true"] { background: var(--acento); color: #fff; font-weight: 600; }
+.modo-botones button:focus-visible { outline: 2px solid var(--texto); outline-offset: 2px; }
+
+.etiqueta-provisional { display: inline-block; background: var(--aviso); border: 1px solid var(--aviso-borde); border-radius: 4px; padding: 2px 8px; font-weight: 600; }
+.advertencia { background: var(--aviso); border: 1px solid var(--aviso-borde); border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+
+.tarjetas { display: flex; flex-wrap: wrap; gap: 16px; background: none; border: 0; padding: 0; }
+.tarjeta { flex: 1 1 220px; background: var(--superficie); border: 1px solid var(--borde); border-radius: 8px; padding: 16px; }
+.tarjeta-titulo { color: var(--suave); font-size: 0.9rem; }
+.tarjeta-valor { font-size: 2.2rem; font-weight: 700; color: var(--acento); }
+.tarjeta-unidad { color: var(--suave); font-size: 0.85rem; }
+.contexto { color: var(--suave); font-size: 0.9rem; margin: 4px 0 12px; }
+
+.barras { display: flex; flex-direction: column; gap: 4px; }
+.barra-fila { display: grid; grid-template-columns: minmax(80px, 140px) 1fr 56px; align-items: center; gap: 8px; font-size: 0.9rem; }
+.barra-fila.destacada { font-weight: 700; }
+.barra-etiqueta { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barra-pista { background: #eef0f3; height: 16px; border-radius: 3px; }
+.barra { background: var(--barra); height: 100%; border-radius: 3px; }
+.barra-fila.destacada .barra { outline: 2px solid var(--texto); }
+.barra-valor { text-align: right; font-variant-numeric: tabular-nums; }
+
+.tabla-contenedor { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { border-bottom: 1px solid var(--borde); padding: 6px 8px; text-align: left; vertical-align: top; }
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr.destacada td { font-weight: 700; }
+td:nth-child(2) { white-space: nowrap; }
+
+.lineas { width: 100%; }
+.lineas svg { display: block; font-size: 12px; }
+.lineas .rejilla { stroke: #e6e9ed; }
+.lineas .linea { fill: none; stroke: var(--barra); stroke-width: 2.5; }
+.lineas .linea.provisional { stroke-dasharray: 6 4; }
+.lineas circle { fill: var(--barra); stroke: var(--barra); stroke-width: 2; }
+.lineas circle.provisional { fill: var(--superficie); }
+.lineas .destacado circle { stroke: var(--texto); }
+.lineas .eje-x, .lineas .eje-y, .lineas .eje-titulo { fill: var(--suave); }
+.lineas .valor-punto { fill: var(--texto); font-weight: 600; }
+.leyenda { color: var(--suave); font-size: 0.85rem; margin: 8px 0 0; }
+
+.notas p { margin: 0 0 8px; }

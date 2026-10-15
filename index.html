@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mortalidad Cardiovascular Ñuble</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Visor de Mortalidad Cardiovascular Ñuble</h1>
+    <p>Defunciones y tasas de mortalidad ajustadas por edad, por 100.000 habitantes. Región de Ñuble, 2019-2025.</p>
+    <button type="button" id="btn-notas" class="boton">Notas metodológicas</button>
+  </header>
+
+  <main id="vista-visor">
+    <section class="filtros" aria-label="Filtros">
+      <label>Territorio <select id="sel-territorio"></select></label>
+      <label>Causa <select id="sel-categoria"></select></label>
+      <label>Período <select id="sel-periodo"></select></label>
+      <div class="modo" role="group" aria-labelledby="modo-titulo">
+        <span id="modo-titulo" class="modo-titulo">Indicador</span>
+        <div class="modo-botones">
+          <button type="button" id="modo-tasa" data-modo="tasa" aria-pressed="true">Tasas ajustadas por edad</button>
+          <button type="button" id="modo-defunciones" data-modo="defunciones" aria-pressed="false">Cantidad de defunciones</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="provisional" class="etiqueta-provisional" hidden>Información provisional</div>
+    <div id="advertencia-periodo" class="advertencia" hidden>
+      Este período incluye información provisional de 2024 y 2025, según los criterios operativos definidos para este visor. Los resultados pueden cambiar con futuras actualizaciones de la base de defunciones.
+    </div>
+
+    <section class="tarjetas" aria-label="Resumen">
+      <div class="tarjeta">
+        <div class="tarjeta-titulo" id="res-titulo"></div>
+        <div class="tarjeta-valor" id="res-valor"></div>
+        <div class="tarjeta-unidad" id="res-unidad"></div>
+      </div>
+    </section>
+    <p class="contexto" id="res-contexto"></p>
+
+    <section>
+      <h2 id="tit-evolucion">Evolución anual</h2>
+      <p class="contexto" id="ctx-evolucion"></p>
+      <div id="graf-evolucion" class="lineas"></div>
+      <p class="leyenda">Línea discontinua y puntos huecos: información provisional (2024 y 2025).</p>
+    </section>
+
+    <section>
+      <h2>Comparación entre comunas</h2>
+      <p class="contexto" id="ctx-comunas"></p>
+      <div id="graf-comunas" class="barras"></div>
+    </section>
+
+    <section>
+      <h2>Causas cardiovasculares</h2>
+      <p class="contexto" id="ctx-categorias"></p>
+      <div class="tabla-contenedor">
+        <table>
+          <thead>
+            <tr><th>Causa</th><th>CIE-10</th><th class="num" id="col-indicador"></th></tr>
+          </thead>
+          <tbody id="tabla-categorias"></tbody>
+        </table>
+      </div>
+      <p><a href="datos_cardio.csv" download>Descargar todos los datos (CSV, separador punto y coma; defunciones y tasa ajustada en columnas separadas)</a></p>
+    </section>
+  </main>
+
+  <main id="vista-notas" hidden>
+    <button type="button" id="btn-volver" class="boton">Volver al visor</button>
+    <section class="notas">
+      <h2>Notas metodológicas</h2>
+      <h3>Ajuste por edad</h3>
+      <p>Todas las tasas de este visor están ajustadas por edad mediante el método directo. Se calculan en 34 estratos de sexo y grupo quinquenal de edad (el último grupo es de 80 años y más). Como ponderadores del ajuste directo se utiliza la población estándar de Chile estimada por el INE al 30 de junio de 2017 (base Censo 2017): la población de cada estrato dividida por la población total del país. Las tasas ajustadas permiten comparar territorios y años con distinta estructura de edad; no representan el número de defunciones observado por cada 100.000 habitantes.</p>
+      <h3>Indicador conjunto</h3>
+      <p>Se presenta un único indicador para ambos sexos, calculado con la población estándar conjunta. El visor no presenta resultados por sexo ni por grupo de edad.</p>
+      <h3>Período 2019-2025</h3>
+      <p>La tasa del período completo se calcula acumulando, en cada estrato, las defunciones y la población de los siete años; no es la suma ni el promedio de las tasas anuales.</p>
+      <h3>Información provisional de 2024 y 2025</h3>
+      <p>Los años 2024 y 2025 se presentan como «Información provisional» según un criterio operativo de este visor, basado en las diferencias observadas entre versiones de los archivos de defunciones del DEIS. No corresponde a una clasificación oficial del DEIS. El año 2023 se considera validado para este visor.</p>
+      <h3>Comunas con poca población</h3>
+      <p>En las comunas con poca población, unas pocas defunciones pueden producir grandes variaciones de la tasa entre un año y otro. Los valores comunales anuales deben interpretarse con cautela. Los resultados son descriptivos y no permiten, por sí solos, atribuir causalidad.</p>
+      <h3>Total cardiovascular</h3>
+      <p>El total incluye todas las defunciones clasificadas en el grupo I00–I99 de la CIE-10, enfermedades del sistema circulatorio, y equivale a la suma de las nueve causas presentadas.</p>
+      <h3>Fuentes</h3>
+      <p>Defunciones: base de defunciones de la Región de Ñuble 2019-2025, a partir de los archivos del DEIS. Población: estimaciones y proyecciones comunales del INE, base Censo 2017. Población estándar: INE, estimaciones de población de Chile al 30 de junio de 2017 (licencia CC BY-SA 4.0), agrupada por sexo y grupo quinquenal de edad y expresada como proporción del total para usarla como ponderadores del ajuste directo por edad.</p>
+    </section>
+  </main>
+
+  <script src="datos_cardio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
