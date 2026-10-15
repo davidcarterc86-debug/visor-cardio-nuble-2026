@@ -25,6 +25,12 @@ body {
 header, main { max-width: 1000px; margin: 0 auto; padding: 0 16px; }
 header h1 { margin: 24px 0 4px; font-size: 1.6rem; }
 header p { margin: 0 0 12px; color: var(--suave); }
+/* Logo institucional (LOGO_SEREMI.jpg) a la izquierda del título, sin deformarlo */
+header { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; }
+header > :not(.logo-institucional) { grid-column: 2; }
+header > .boton { justify-self: start; }
+.logo-institucional { grid-column: 1; grid-row: 1 / span 3; align-self: start; margin-top: 24px; height: 64px; width: auto; border-radius: 4px; }
+@media (max-width: 600px) { header { column-gap: 12px; } .logo-institucional { height: 48px; } }
 
 .boton { font: inherit; font-size: 0.95rem; padding: 8px 14px; border: 1px solid var(--acento); border-radius: 6px; background: var(--superficie); color: var(--acento); cursor: pointer; }
 .boton:hover, .boton:focus-visible { background: var(--acento); color: #fff; }
